@@ -1481,4 +1481,8 @@ fieldset:disabled .btn {
 .card-top {
   height: 300px;
 }
+
+.disappear {
+  display: none;
+}
 /*# sourceMappingURL=all.css.map */
