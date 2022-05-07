@@ -1,0 +1,14 @@
+// Required
+@import "./Bootstrap/functions";
+@import "./Bootstrap/variables";
+@import "./Bootstrap/mixins";
+
+//mixins
+@import "./Bootstrap/reboot";
+@import "./Bootstrap/buttons";
+@import "./Bootstrap/card";
+@import "./Bootstrap/pagination";
+@import "./Bootstrap/containers";
+
+//Customer
+@import "pages/index";

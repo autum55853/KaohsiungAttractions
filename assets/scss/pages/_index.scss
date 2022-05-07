@@ -1,0 +1,42 @@
+.container{
+    text-align: center;
+    max-width: 100%;
+}
+
+
+.header-bg{
+    background-image:url('../images/Hero.png');
+    background-size:cover;
+    background-position:center;
+}
+.header{
+    padding:10% 0;
+}
+.select{
+    width: 20%;
+    background: rgba(255,255,255,0.70);
+}
+.divide{
+    border-top: 2px dashed #559AC8;
+    position:relative;
+    span{
+        position: absolute;
+        top:-15px;
+    }
+}
+
+.hotViews{
+    top:-40px;
+    width: 60%;
+}
+
+.content{
+    max-width: 80%;
+}
+.card{
+    width:45%;
+    max-height: 450px;
+}
+.card-top{
+    height: 300px;
+}
