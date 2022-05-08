@@ -10,10 +10,8 @@ axios.get('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastor
         console.log(viewData);
         //renderData('全部景點');
         renderZoneSelect();
-        pagination(viewData);
-        //showBtn();
-        //監聽是在按鈕被 click 之後才會啟動，所以我們必需在網頁載入時先預設第 1 頁會自動出現
-        //changePage(1,pageData);
+        pagination(viewData,nowPage=1);
+        
     });
 
 //景點下拉式選單
