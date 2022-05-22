@@ -7,7 +7,7 @@ axios.get('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastor
     .then(function (response) {
         //console.log('資料已回傳');
         viewData = response.data.result.records;
-        console.log(viewData);
+        //console.log(viewData);
         //renderData('全部景點');
         renderZoneSelect();
         pagination(viewData,nowPage=1);
@@ -16,9 +16,7 @@ axios.get('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastor
 
 //景點下拉式選單
 const citySelected = document.querySelector('.city-select select');
-const tourist = document.querySelector('.cardContent');
-//監聽: 當下拉式選單被改變時,觸發selectZone
-citySelected.addEventListener('change', selectZone, false);
+
 
 //function
 function renderZoneSelect() {  //下拉式選單賦予值
@@ -30,18 +28,15 @@ function renderZoneSelect() {  //下拉式選單賦予值
     });
     let str = '';
     str += `<option value='全部景點' class="text-center allviews">  全部景點(${viewData.length})  </option>`;
-    //手動加入
-    str += `<option class="text-center" value='新興區'>新興區</option>`;
-    str += `<option class="text-center" value='鹽埕區'>鹽埕區</option>`;
     for (i = 0; i < zoneList.length; i++) {
         str += `<option class="text-center" value='${zoneList[i]}'>${zoneList[i]}</option>`;
     };
     citySelected.innerHTML = str;
 };
 
-//change zone
+//change zone 監聽: 當下拉式選單被改變時,觸發selectZone
 citySelected.addEventListener('change', selectZone, false);
-selectedArea = document.querySelector('.selectedArea');
+const selectedArea = document.querySelector('.selectedArea');
 function selectZone() {
     selectedArea.textContent = citySelected.value;
     renderData(citySelected.value);
@@ -61,13 +56,12 @@ function renderHotView(e) {
     }
 };
 
-selectedArea.addEventListener('change', renderData, false);
 const select = selectedArea.textContent;
 //render 選取的景點
 function renderData(select) {
     let str = '';
     viewData.forEach(function (item, index) {
-        if (select == item.Zone) {
+        if (select === item.Zone) {
             str += `<div class="cardContent  mx-auto card mb-3 ">
 
                         <div class="card-top p-2" style="background-image:url('${item.Picture1}');max-height:200px;background-size:cover;background-position:center;">
@@ -85,14 +79,15 @@ function renderData(select) {
                             </div>
                         </div>
                 </div>`
+                const zone=item.Zone;
                 //如果被選擇的景點比數大於6筆,則出現分頁,否則"沒有分頁按鈕"
                 if(viewData.length>6){
                     pagination(viewData,nowPage=1);
                 } else{
-                    document.querySelector('.pagination').classList="d-none";
+                    document.querySelector('.navigation').classList.add("d-none");
                 };
         }
-        else if (select == '全部景點') {
+        else if (select === '全部景點') {
             str += `<div class="cardContent  mx-auto card mb-3 ">
 
                       <div class="card-top p-2" style="background-image:url('${item.Picture1}');max-height:200px;background-size:cover;background-position:center;">
@@ -109,7 +104,8 @@ function renderData(select) {
                               <span><img src="assets/images/icons_tag.png" alt="clock">${item.Ticketinfo}</span>
                           </div>
                       </div>
-              </div>`
+              </div>`;
+              pagination(viewData,nowPage=1);
         }
     })
     card.innerHTML = str;
